@@ -5,6 +5,7 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUpPage"
 import LogIn from "./pages/LoginPage";
 import Dashboard from "./pages/DashboardPage";
+import Logout from "./pages/logout";
 
 const routes = [
     {
@@ -28,7 +29,11 @@ const routes = [
             path: "/login",
             element: <LogIn/>,
         },
-         {
+        {
+            path: "/logout",
+            element: <Logout/>
+        },
+        {
             path: "/dashboard",
             element: <Dashboard/>,
         },

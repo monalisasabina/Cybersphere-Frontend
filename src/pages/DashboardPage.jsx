@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Dashboard(){
 
       const [user, setUser] = useState(null);
 
+  //_____________________________________________________________________________________________________________
+  //Getting the User details from the Backend 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -25,10 +28,74 @@ function Dashboard(){
       });
   }, []);
 
+  // _____________________________________________________________________________________________________________________
+  // Navigating back to the homepage using the logout button
+     
+     const navigate = useNavigate();
+
+    //  useEffect(() =>{
+    //         const token = localStorage.getItem('token');
+
+    //         if (!token){
+    //           navigate('/login')
+    //         }
+
+    //  },[navigate]);
+
+    //  const handleLogout = () =>{
+    //       localStorage.removeItem('token');
+    //       localStorage.removeItem('user');
+    //       navigate('/login')
+    //  }
+
+     async function handleLogout(){
+
+          const token = localStorage.getItem('token');
+
+          
+          try{
+            const response = await fetch('http://127.0.0.1:5555/logout',{
+                 method: 'DELETE',
+                 headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                 }
+              })
+            
+
+            if (response.ok){
+              console.log("Successfully logged out from server");
+            }else {
+              console.warn("Sever logout failed");
+            }
+        
+          } catch(error){
+             console.error("Error during logout:", error)
+          }
+
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          navigate('/login')
+
+     }
+
+
+
   return (
     <div>
-      <h2>Dashboard</h2>
-      {user ? <p>Welcome, {user.username}</p> : <p>Loading user...</p>}
+        <div>
+             <h2>Dashboard</h2>
+             {user ? <p>Welcome, {user.firstname}</p> : <p>Loading user...</p>}
+        </div>
+
+        <div>
+          <button 
+                onClick={handleLogout}
+                
+                >Logout
+          </button>
+
+        </div>
     </div>
   );
 
