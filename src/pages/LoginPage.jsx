@@ -1,6 +1,6 @@
-import React from "react";
 import { useState} from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
+
 
 function LogIn(){
     
@@ -32,12 +32,20 @@ function LogIn(){
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input value={identifier} onChange={(e) => setIdentifier(e.target.value)} placeholder="Username or Email" />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
+       <div>
+         <form onSubmit={handleLogin}>
+            <h2>Login</h2>
+            <input value={identifier} onChange={(e) => setIdentifier(e.target.value)} placeholder="Username or Email" />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            <button type="submit">Login</button>
+          </form>
+
+          <div>
+             <p>
+               <Link to="/forgotpassword"> Forgot Password</Link>
+             </p>
+          </div>
+       </div>
   );
     
 }

@@ -5,7 +5,9 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUpPage"
 import LogIn from "./pages/LoginPage";
 import Dashboard from "./pages/DashboardPage";
-import Logout from "./pages/logout";
+import Logout from "./Components/ForgotPassword";
+import ForgotPassword from "./Components/ForgotPassword";
+import ResetPassword from "./Components/ResetPassword";
 
 const routes = [
     {
@@ -30,13 +32,17 @@ const routes = [
             element: <LogIn/>,
         },
         {
-            path: "/logout",
-            element: <Logout/>
+            path: "/forgotpassword",
+            element: <ForgotPassword/>
         },
         {
             path: "/dashboard",
             element: <Dashboard/>,
         },
+        {
+            path: "/resetpassword",
+            element: <ResetPassword />
+        }
 
         
       ]
