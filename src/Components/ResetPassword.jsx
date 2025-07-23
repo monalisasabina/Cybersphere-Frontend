@@ -11,15 +11,16 @@ function ResetPassword(){
     const [message, setMessage] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
 
-    // Confirm Password____________________________________________________________________
-    if (password !== confirmPassword){
-        setMessage("Passwords do not match!")
-        return;
-    }
-
+  
     // Handle Reset ______________________________________________________________________
     const handleReset = async (e) => {
         e.preventDefault();
+
+        // Confirm Password____________________________________________________________________
+        if (password !== confirmPassword){
+            setMessage("Passwords do not match!")
+            return;
+        }
 
         try {
             const response = await fetch ("http://127.0.0.1:5555/resetpassword", {
@@ -28,7 +29,7 @@ function ResetPassword(){
                      "Content-Type": "application/json",
                      Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify({ password, token}),
+                body: JSON.stringify({ new_password: password}),
             });
 
             const data = await response.json();
@@ -36,10 +37,19 @@ function ResetPassword(){
             if (response.ok){
                 setMessage("Password reset successful")
                 setTimeout(() => navigate("/login"), 2000)
+
             } else {
-                setMessage(data.message || "Reset failed."); 
+                // setMessage(data.message || "Reset failed."); 
+
+                const errorMessage = data?.message || "Reset failed.";
+
+                if (errorMessage.includes("expired") || errorMessage.includes("Invalid")){
+                    setMessage("Link expired. Please request a new one.")
+                } else {
+                    setMessage(errorMessage);
+                }
             }
-        
+
         } catch (error){
             console.error (error);
             setMessage("Something went wrong")
@@ -65,7 +75,7 @@ function ResetPassword(){
                           type="password"
                           placeholder="Confirm new password"
                           value={confirmPassword}
-                          onChange={(event) => setPassword(event.target.value)}
+                          onChange={(event) => setConfirmPassword(event.target.value)}
                           required
                     />
 
@@ -73,6 +83,10 @@ function ResetPassword(){
                 </form>
 
                 {message && <p>{message}</p>}
+
+                {message.includes("expired") && (
+                    <button onClick={() => navigate("/forgotpassword") }> Request New Reset Link</button>
+                )}
             </div>
 
         </div>
