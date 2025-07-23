@@ -1,51 +1,118 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import "./SignUp.css"
 
 function SignUp(){
 
-    const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    password: "",
-    role: "user",
-    admin_code: "", // Required
-  });
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] =useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [preview, setPreview] = useState(null)
 
-  const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
-  };
+  const fileInputRef = useRef()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Handle Box Click_______________________________________________________________
+   const handleBoxClick = () => {
+         fileInputRef.current.click();
+   }
 
-    const res = await fetch("http://127.0.0.1:5555/signup", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(formData),
-    });
 
-    const data = await res.json();
-
-    if (res.ok) {
-      alert("Signup successful!");
-    } else {
-      alert(data.error || "Signup failed");
-    }
-  };
+   
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Signup</h2>
-      <input name="firstname" placeholder="First Name" onChange={handleChange} required />
-      <input name="lastname" placeholder="Last Name" onChange={handleChange} required />
-      <input name="username" placeholder="Username" onChange={handleChange} required />
-      <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
-      <input name="role" placeholder="Role (e.g. user)" onChange={handleChange} required />
-      <input name="admin_code" placeholder="Admin Code" onChange={handleChange} required />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div>
+
+      <h2>Sign Up Page</h2>
+
+      <div>
+          <form>
+            {/* <input 
+                  name="profile_pic"
+                  type="file"
+                  value={profilePic}
+                  onChange={(event) => setProfilePic(event.target.value)}
+            /> */}
+
+            <div 
+                 className="box_click"
+                 
+                 
+                 >
+
+            </div>
+
+            <input
+                  name="firstname"
+                  type="text"
+                  value={firstName}
+                  placeholder="Enter Your First Name"
+                  onChange={(event) => setFirstName(event.target.value) }
+                  required
+            />
+
+             <input
+                  name="lastname"
+                  type="text"
+                  value={lastName}
+                  placeholder="Enter your Last Name"
+                  onChange={(event) => setLastName(event.target.value) }
+                  required
+            />
+
+            <input
+                  name="username"
+                  type="email"
+                  value={email}
+                  placeholder="Enter your Email Address"
+                  onChange={(event) => setEmail(event.target.value) }
+                  required
+            />
+
+            <input
+                  name="username"
+                  type="email"
+                  value={email}
+                  placeholder="Enter your Email Address"
+                  onChange={(event) => setEmail(event.target.value) }
+                  required
+            />
+
+             <input
+                  name="email"
+                  type="text"
+                  value={username}
+                  placeholder="Enter your username"
+                  onChange={(event) => setUserName(event.target.value) }
+                  required
+            />
+
+            <input
+                  name="password"
+                  type="password"
+                  value={password}
+                  placeholder="Enter Your Password"
+                  onChange={(event) => setPassword(event.target.value) }
+                  required
+            />
+
+              <input
+                  name="confirm_password"
+                  type="password"
+                  value={confirmPassword}
+                  placeholder="Confirm Your Password"
+                  onChange={(event) => setConfirmPassword(event.target.value) }
+                  required
+            />
+
+
+          </form>
+      </div>
+
+    </div>
+    
   );
     
 }
