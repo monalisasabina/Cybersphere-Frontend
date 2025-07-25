@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./SignUp.css"
-import { data } from "react-router-dom";
+
 
 function SignUp(){
 
@@ -11,7 +11,10 @@ function SignUp(){
   const [password, setPassword] =useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [profilePic, setProfilePic] = useState("");
-  const [preview, setPreview] = useState(null)
+  const [preview, setPreview] = useState(null);
+  const [adminCode, setAdminCode] = useState("");
+  const [role, setRole] = useState("Other Employee");
+  const [message, setMessage] = useState("");
 
   const fileInputRef = useRef()
 
@@ -37,8 +40,16 @@ function SignUp(){
 
       event.preventDefault();
 
-      // Signing up the user
-      const response = await fetch("http://127.0.0.1:5555/signup", {
+      // Confirm password check
+      if (password !== confirmPassword){
+            setMessage("Passwords do not match")
+      }
+
+      let token = null;
+     
+      try{
+          // Signing up the user   
+         const response = await fetch("http://127.0.0.1:5555/signup", {
             method: "POST",
             headers: {
                   "Content-Type":" application/json"
@@ -49,14 +60,20 @@ function SignUp(){
                   username,
                   email,
                   password,
-                  confirm_password: confirmPassword
+                  confirm_password: confirmPassword,
+                  role: role,
+                  admin_code: adminCode
+                  
             }),
       });
-
+ 
       const data = await response.json();
 
       if(response.ok){
-         const token =data.access_token;
+           token = data.access_token;
+           setMessage("SignUp Succesful!")
+      } else {
+           setMessage(data.message || "SignUp failed!")
       }
 
       // Uploading photo
@@ -67,17 +84,28 @@ function SignUp(){
 
             const uploadRes = await fetch("http://127.0.0.1:5555/upload", {
                   method:"POST",
-                  // headers: {
-                  //       Authorization: `Bearer ${token}}`
-                  // },
+                  headers: {
+                        Authorization: `Bearer ${token}}`
+                  },
                   body: formData,
             });
 
             const uploadData = await uploadRes.json();
             console.log("Upload response", uploadData);
 
-      } else {
-            console.log("Signup failed", data)
+            if (!uploadRes.ok){
+                  setMessage(uploadData.message || "Image upload failed.")
+                  return;            
+            }   
+
+            console.log("Image uploaded succeessfully", uploadData);
+            setMessage("SignUp and Image uploaded successfully!")
+     
+          }
+          
+      } catch (err) {
+            console.error("SignUp Error");
+            setMessage("An unexpected error occured.")
       }
     };    
 
@@ -89,13 +117,8 @@ function SignUp(){
 
       <div>
           <form onSubmit={handleSubmit}>
-            {/* <input 
-                  name="profile_pic"
-                  type="file"
-                  value={profilePic}
-                  onChange={(event) => setProfilePic(event.target.value)}
-            /> */}
-
+           
+           {/* Box click */}
             <div className="box_click" onClick={handleBoxClick}>
                   {preview ? (
                         <img src={preview} alt="Profile pic preview" style={{ width: "100px"}}/>
@@ -157,7 +180,7 @@ function SignUp(){
                   required
             />
 
-              <input
+            <input
                   name="confirm_password"
                   type="password"
                   value={confirmPassword}
@@ -166,8 +189,23 @@ function SignUp(){
                   required
             />
 
+            <input 
+                  name="admin_code"
+                  type="password"
+                  value={adminCode}
+                  placeholder="Enter Admin Code"
+                  onChange={(event) => setAdminCode(event.target.value)}
+            />
+
+            <select value={role} onChange={(event) => setRole(event.target.value) }>
+                 <option value="Admin">Admin</option> 
+                 <option value="Other Employee">Other Employee</option>
+            </select>
+
             <button type="submit">ADD USER</button>
           </form>
+
+          {message && <p className="message">{message}</p>}
       </div>
 
     </div>

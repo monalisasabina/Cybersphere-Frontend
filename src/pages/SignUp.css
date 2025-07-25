@@ -11,3 +11,8 @@
     position: relative;
     overflow: hidden;
 }
+
+.message{
+    color: green;
+    margin-top: 1rem;
+}

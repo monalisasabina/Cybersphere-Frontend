@@ -1,7 +1,6 @@
 import { useState} from "react"
 import { useNavigate, Link} from "react-router-dom";
 
-
 function LogIn(){
     
   const [identifier, setIdentifier] = useState("");
@@ -24,6 +23,8 @@ function LogIn(){
 
     if (res.ok) {
       localStorage.setItem("token", data.access_token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      
       alert("Login success");
       navigate("/dashboard");
     } else {

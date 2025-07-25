@@ -8,6 +8,8 @@ import Dashboard from "./pages/DashboardPage";
 import Logout from "./Components/ForgotPassword";
 import ForgotPassword from "./Components/ForgotPassword";
 import ResetPassword from "./Components/ResetPassword";
+import RequireAdmin from "./Components/RequireAdmin";
+import AdminApp from "./Components/AdminApp";
 
 const routes = [
     {
@@ -24,10 +26,6 @@ const routes = [
             element: <About/>,
         },
         {
-            path: "/signup",
-            element: <SignUp/>,
-        },
-        {
             path: "/login",
             element: <LogIn/>,
         },
@@ -36,17 +34,30 @@ const routes = [
             element: <ForgotPassword/>
         },
         {
-            path: "/dashboard",
-            element: <Dashboard/>,
-        },
-        {
             path: "/resetpassword",
             element: <ResetPassword />
         }
-
-        
       ]
-    }
-]
+    },
+
+    {
+        path: "/dashboard",
+        element: (
+            <RequireAdmin>
+                  <AdminApp/>
+            </RequireAdmin>
+        ),
+        children: [
+            {
+                path: "",
+                element: <Dashboard />
+            },
+            {
+                path: "signup",
+                element: <SignUp />
+            }
+        ],
+    },
+];
 
 export default routes;
