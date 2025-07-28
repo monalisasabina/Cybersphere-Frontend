@@ -6,7 +6,7 @@ function AdminNavBar(){
 
       async function handleLogout(){
 
-          const token = localStorage.getItem('token');
+          const token = localStorage.getItem('access-token');
 
           
           try{
@@ -22,17 +22,17 @@ function AdminNavBar(){
             if (response.ok){
               console.log("Successfully logged out from server");
             }else {
-              console.warn("Sever logout failed");
+              console.warn("Server logout failed");
             }
         
           } catch(error){
              console.error("Error during logout:", error)
           }
 
-          localStorage.removeItem('token');
+          localStorage.removeItem('access-token');
           localStorage.removeItem('user');
           navigate('/login')
-
+ 
      }
 
     return(

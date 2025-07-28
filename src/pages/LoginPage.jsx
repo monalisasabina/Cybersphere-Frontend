@@ -22,7 +22,7 @@ function LogIn(){
     const data = await res.json();
 
     if (res.ok) {
-      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("access-token", data.access_token);
       localStorage.setItem("user", JSON.stringify(data.user));
       
       alert("Login success");

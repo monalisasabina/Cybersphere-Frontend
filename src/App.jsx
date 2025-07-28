@@ -20,7 +20,7 @@ function App() {
   return () => window.removeEventListener("keydown", handleKeyCombo);
   }, [navigate]);
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access-token");
   // const user = JSON.parse(localStorage.getItem("user") || "{}");
   const isAdmin = token
 

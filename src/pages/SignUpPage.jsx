@@ -13,8 +13,9 @@ function SignUp(){
   const [profilePic, setProfilePic] = useState("");
   const [preview, setPreview] = useState(null);
   const [adminCode, setAdminCode] = useState("");
-  const [role, setRole] = useState("Other Employee");
+  const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
+
 
   const fileInputRef = useRef()
 
@@ -35,7 +36,7 @@ function SignUp(){
    };
 
 
-    //Hanfle submit form__________________________________________________________________________
+    //Handle submit form__________________________________________________________________________
     const  handleSubmit = async (event) => {
 
       event.preventDefault();
@@ -43,41 +44,26 @@ function SignUp(){
       // Confirm password check
       if (password !== confirmPassword){
             setMessage("Passwords do not match")
+            return;
       }
 
-      let token = null;
+      const token = localStorage.getItem("access-token");
+      console.log(token)
+
+      if (!token) {
+            setMessage("You are not authorized. Please log in first.")
+            return;
+      }
+      if(token.split('.').length !==3){
+            setMessage("Invalid token format. Please log in again.")
+            return;
+      }
      
+      let uploadedFileName = "";
+
       try{
-          // Signing up the user   
-         const response = await fetch("http://127.0.0.1:5555/signup", {
-            method: "POST",
-            headers: {
-                  "Content-Type":" application/json"
-            },
-            body: JSON.stringify({
-                  firstname: firstName,
-                  lastName: lastName,
-                  username,
-                  email,
-                  password,
-                  confirm_password: confirmPassword,
-                  role: role,
-                  admin_code: adminCode
-                  
-            }),
-      });
- 
-      const data = await response.json();
-
-      if(response.ok){
-           token = data.access_token;
-           setMessage("SignUp Succesful!")
-      } else {
-           setMessage(data.message || "SignUp failed!")
-      }
-
-      // Uploading photo
-      if (profilePic) {
+           // Uploading photo
+        if (profilePic) {
 
             const formData = new FormData();
             formData.append("image", profilePic);
@@ -85,7 +71,7 @@ function SignUp(){
             const uploadRes = await fetch("http://127.0.0.1:5555/upload", {
                   method:"POST",
                   headers: {
-                        Authorization: `Bearer ${token}}`
+                        Authorization: `Bearer ${token}`
                   },
                   body: formData,
             });
@@ -96,15 +82,52 @@ function SignUp(){
             if (!uploadRes.ok){
                   setMessage(uploadData.message || "Image upload failed.")
                   return;            
-            }   
-
+            }
+            
+            uploadedFileName = uploadData.uploadedFileName
+            
             console.log("Image uploaded succeessfully", uploadData);
             setMessage("SignUp and Image uploaded successfully!")
      
           }
+
+          // Signing up the user   
+         const response = await fetch("http://127.0.0.1:5555/signup", {
+            method: "POST",
+            headers: {
+                  "Content-Type":" application/json",
+                   Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                  firstname: firstName,
+                  lastname: lastName,
+                  username: username,
+                  email: email,
+                  password: password,
+                  // confirm_password: confirmPassword,
+                  role: role,
+                  admin_code: adminCode,
+                  is_admin: role === "Admin",
+                  profile_image: uploadedImageName
+                  
+            }),
+      });
+ 
+      const data = await response.json();
+      console.log(data)
+
+      if(response.ok){
+           const newToken = data.access_token;
+           setMessage("SignUp Succesful!")
+      } else {
+           setMessage(data.message || "SignUp failed!")
+           console.log("SignUp error:", data)
+      }
+
+     
           
       } catch (err) {
-            console.error("SignUp Error");
+            console.error("SignUp Error", err);
             setMessage("An unexpected error occured.")
       }
     };    
@@ -198,6 +221,7 @@ function SignUp(){
             />
 
             <select value={role} onChange={(event) => setRole(event.target.value) }>
+                 <option>--Please Choose A Role--</option>
                  <option value="Admin">Admin</option> 
                  <option value="Other Employee">Other Employee</option>
             </select>

@@ -8,7 +8,7 @@ function Dashboard(){
   //_____________________________________________________________________________________________________________
   //Getting the User details from the Backend 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access-token");
 
     fetch("http://127.0.0.1:5555/check_session", {
       headers: {
@@ -34,7 +34,7 @@ function Dashboard(){
      const navigate = useNavigate();
 
     //  useEffect(() =>{
-    //         const token = localStorage.getItem('token');
+    //         const token = localStorage.getItem('access-token');
 
     //         if (!token){
     //           navigate('/login')
@@ -43,14 +43,14 @@ function Dashboard(){
     //  },[navigate]);
 
     //  const handleLogout = () =>{
-    //       localStorage.removeItem('token');
+    //       localStorage.removeItem('access-token');
     //       localStorage.removeItem('user');
     //       navigate('/login')
     //  }
 
      async function handleLogout(){
 
-          const token = localStorage.getItem('token');
+          const token = localStorage.getItem('access-token');
 
           
           try{
@@ -73,10 +73,9 @@ function Dashboard(){
              console.error("Error during logout:", error)
           }
 
-          localStorage.removeItem('token');
+          localStorage.removeItem('access-token');
           localStorage.removeItem('user');
           navigate('/login')
-
      }
 
 
@@ -91,7 +90,6 @@ function Dashboard(){
         <div>
           <button 
                 onClick={handleLogout}
-                
                 >Logout
           </button>
 
