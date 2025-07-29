@@ -15,6 +15,7 @@ function SignUp(){
   const [adminCode, setAdminCode] = useState("");
   const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
+  const [suggestions, setSuggestions] = useState([])
 
 
   const fileInputRef = useRef()
@@ -34,6 +35,37 @@ function SignUp(){
             setPreview(URL.createObjectURL(file))
       }
    };
+
+   //Handle username suggestions
+   const handleUsernameSuggesstions = async () => {
+         
+        if (!firstName || !lastName) {
+            return;
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:5555/suggest-username",{
+                  method: "POST",
+                  headers: {
+                        "Content-Type": "application/json"
+                  }, 
+                  body: JSON.stringify({
+                        firstname:firstName, 
+                        lastname:lastName
+                     })
+            })
+            const data = await response.json();
+
+            if (response.ok) {
+                  setSuggestions(data.suggestions)
+            } else {
+                  console.error(data.error || "Failed to fetch suggestions")
+            }
+       
+         } catch(error) {
+            console.error("Error fetching suggestions", error);
+         }
+   }    
 
 
     //Handle submit form__________________________________________________________________________
@@ -182,6 +214,16 @@ function SignUp(){
                   onChange={(event) => setUserName(event.target.value) }
                   required
             />
+            <button onClick={handleUsernameSuggesstions}>Suggest Username</button>
+            <div>
+                  {suggestions.length >0 && (
+                        <ul>
+                              {suggestions.map((username, index) =>(
+                                    <li key={index}>{username}</li>
+                               ))}
+                        </ul>
+                  )}
+            </div>
 
             <input
                   name="email"
