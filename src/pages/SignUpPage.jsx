@@ -59,11 +59,11 @@ function SignUp(){
             return;
       }
      
-      let uploadedFileName = "";
+      let uploadedImageName = "";
 
       try{
-           // Uploading photo
-        if (profilePic) {
+         // Uploading photo
+         if (profilePic) {
 
             const formData = new FormData();
             formData.append("image", profilePic);
@@ -84,7 +84,7 @@ function SignUp(){
                   return;            
             }
             
-            uploadedFileName = uploadData.uploadedFileName
+            uploadedImageName = uploadData.filename
             
             console.log("Image uploaded succeessfully", uploadData);
             setMessage("SignUp and Image uploaded successfully!")
@@ -104,7 +104,6 @@ function SignUp(){
                   username: username,
                   email: email,
                   password: password,
-                  // confirm_password: confirmPassword,
                   role: role,
                   admin_code: adminCode,
                   is_admin: role === "Admin",
@@ -125,7 +124,6 @@ function SignUp(){
       }
 
      
-          
       } catch (err) {
             console.error("SignUp Error", err);
             setMessage("An unexpected error occured.")
