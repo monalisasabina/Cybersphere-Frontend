@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa";
 import "./SignUp.css"
 
 
@@ -16,6 +18,8 @@ function SignUp(){
   const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
   const [suggestions, setSuggestions] = useState([])
+  const [visible, setVisible] = useState(false)
+  const [visibleConfirm, setVisibleConfirm] =useState(false)
 
 
   const fileInputRef = useRef()
@@ -236,21 +240,27 @@ function SignUp(){
 
             <input
                   name="password"
-                  type="password"
+                  type= {visible ? "text": "password"}
                   value={password}
                   placeholder="Enter Your Password"
                   onChange={(event) => setPassword(event.target.value) }
                   required
             />
+            <div onClick={() => setVisible(!visible)}>
+                          { visible ?  <FaRegEye /> : <FaRegEyeSlash/> }
+            </div>
 
             <input
                   name="confirm_password"
-                  type="password"
+                  type= {visibleConfirm ? "text": "password"}
                   value={confirmPassword}
                   placeholder="Confirm Your Password"
                   onChange={(event) => setConfirmPassword(event.target.value) }
                   required
             />
+            <div onClick={() => setVisibleConfirm(!visibleConfirm)}>
+                          { visibleConfirm ?  <FaRegEye /> : <FaRegEyeSlash/> }
+            </div>
 
             <input 
                   name="admin_code"

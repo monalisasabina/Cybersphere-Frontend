@@ -1,10 +1,15 @@
 import { useState} from "react"
 import { useNavigate, Link} from "react-router-dom";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa";
+
 
 function LogIn(){
     
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -37,7 +42,18 @@ function LogIn(){
          <form onSubmit={handleLogin}>
             <h2>Login</h2>
             <input value={identifier} onChange={(e) => setIdentifier(e.target.value)} placeholder="Username or Email" />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            
+            <input 
+                 type= {visible ? "text": "password"}
+                 value={password} 
+                 onChange={(e) => setPassword(e.target.value)} 
+                 placeholder="Password" 
+            />
+
+            <div onClick={() => setVisible(!visible)}>
+              { visible ?  <FaRegEye /> : <FaRegEyeSlash/> }
+            </div>
+
             <button type="submit">Login</button>
           </form>
 

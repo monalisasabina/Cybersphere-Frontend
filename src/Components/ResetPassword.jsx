@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom"
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 
 function ResetPassword(){
@@ -11,6 +13,9 @@ function ResetPassword(){
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [visible, setVisible] = useState(false)
+    const [visibleConfirm, setVisibleConfirm] =useState(false)
+
 
   
     // Handle Reset ______________________________________________________________________
@@ -65,20 +70,26 @@ function ResetPassword(){
             <div>
                 <form onSubmit={handleReset}>
                     <input 
-                          type="password"
+                          type= {visible ? "text": "password"}
                           placeholder="Enter new password"
                           value={password}
                           onChange={(event) => setPassword(event.target.value)}
                           required
                     />
+                    <div onClick={() => setVisible(!visible)}>
+                          { visible ?  <FaRegEye /> : <FaRegEyeSlash/> }
+                    </div>
 
                     <input
-                          type="password"
+                          type= {visibleConfirm ? "text": "password"}
                           placeholder="Confirm new password"
                           value={confirmPassword}
                           onChange={(event) => setConfirmPassword(event.target.value)}
                           required
                     />
+                    <div onClick={() => setVisibleConfirm(!visibleConfirm)}>
+                          { visibleConfirm ?  <FaRegEye /> : <FaRegEyeSlash/> }
+                    </div>
 
                     <button type="submit">Reset Password</button>
                 </form>

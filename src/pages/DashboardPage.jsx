@@ -33,21 +33,7 @@ function Dashboard(){
      
      const navigate = useNavigate();
 
-    //  useEffect(() =>{
-    //         const token = localStorage.getItem('access-token');
-
-    //         if (!token){
-    //           navigate('/login')
-    //         }
-
-    //  },[navigate]);
-
-    //  const handleLogout = () =>{
-    //       localStorage.removeItem('access-token');
-    //       localStorage.removeItem('user');
-    //       navigate('/login')
-    //  }
-
+    //  Handle LogOut
      async function handleLogout(){
 
           const token = localStorage.getItem('access-token');
@@ -84,7 +70,9 @@ function Dashboard(){
     <div>
         <div>
              <h2>Dashboard</h2>
+             {user ? <img src={user.profile_pic}/>: <p> </p>}
              {user ? <p>Welcome, {user.firstname}</p> : <p>Loading user...</p>}
+
         </div>
 
         <div>
