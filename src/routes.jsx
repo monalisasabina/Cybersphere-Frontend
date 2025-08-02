@@ -10,6 +10,7 @@ import ForgotPassword from "./Components/ForgotPassword";
 import ResetPassword from "./Components/ResetPassword";
 import RequireAdmin from "./Components/RequireAdmin";
 import AdminApp from "./Components/AdminApp";
+import DisplayUsers from "./pages/Users";
 
 const routes = [
     {
@@ -55,7 +56,12 @@ const routes = [
             {
                 path: "signup",
                 element: <SignUp />
+            },
+            {
+                path: "users",
+                element: <DisplayUsers/>
             }
+
         ],
     },
 ];

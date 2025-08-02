@@ -8,7 +8,6 @@ function AdminNavBar(){
 
           const token = localStorage.getItem('access-token');
 
-          
           try{
             const response = await fetch('http://127.0.0.1:5555/logout',{
                  method: 'DELETE',
@@ -40,6 +39,7 @@ function AdminNavBar(){
             <nav>
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/dashboard/signup">Sign Up</Link>
+                <Link to="/dashboard/users">Users</Link>
                 <button onClick={handleLogout}>Log Out</button>
             </nav>
 

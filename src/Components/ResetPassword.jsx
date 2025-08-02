@@ -45,7 +45,6 @@ function ResetPassword(){
                 setTimeout(() => navigate("/login"), 2000)
 
             } else {
-                // setMessage(data.message || "Reset failed."); 
 
                 const errorMessage = data?.message || "Reset failed.";
 
