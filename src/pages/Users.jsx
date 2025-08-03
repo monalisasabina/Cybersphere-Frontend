@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
+import "./users.css"
 
 function DisplayUsers(){
 
     const [users, setUsers] = useState([])
 
+    // Fetching Users
     useEffect(() => {
 
         const token = localStorage.getItem("access-token")
@@ -33,17 +35,17 @@ function DisplayUsers(){
         }
 
         return `http://127.0.0.1:5555${imagePath}`
-           
     }
 
     return(
-        <div>
+        <div className="users_cont">
 
-            <div>
+            <div className="users_card_cont">
                 {users.map((user) => (
-                    <div key={user.id}>
-                        <p>Name: {user.firstname}</p>
+                    <div key={user.id} className="users_card">
+                        <p>{user.firstname} {user.lastname}</p>
                         <img src={getImageUrl(user.profile_image)}/>
+                        <p>{user.role}</p>
 
                     </div>
                 ))}
