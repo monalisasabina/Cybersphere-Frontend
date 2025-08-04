@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa";
 import "./SignUp.css"
+import { Navigate } from "react-router-dom";
+import WelcomeModal from "../modal/welcomemodal";
 
 
 function SignUp(){
@@ -20,6 +22,7 @@ function SignUp(){
   const [suggestions, setSuggestions] = useState([])
   const [visible, setVisible] = useState(false)
   const [visibleConfirm, setVisibleConfirm] =useState(false)
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false)
 
 
   const fileInputRef = useRef()
@@ -84,7 +87,7 @@ function SignUp(){
       }
 
       const token = localStorage.getItem("access-token");
-      console.log(token)
+      // console.log(token)
 
       if (!token) {
             setMessage("You are not authorized. Please log in first.")
@@ -154,6 +157,12 @@ function SignUp(){
       if(response.ok){
            const newToken = data.access_token;
            setMessage("SignUp Succesful!")
+
+           setShowWelcomeModal(true);
+           setTimeout(() => {
+               setShowWelcomeModal(false)
+           },3000)
+           
       } else {
            setMessage(data.message || "SignUp failed!")
            console.log("SignUp error:", data)
@@ -172,6 +181,9 @@ function SignUp(){
 
       <h2>Sign Up Page</h2>
 
+      {/* Show welcome Modal */}
+      {showWelcomeModal && <WelcomeModal name={firstName} />}
+
       <div>
           <form onSubmit={handleSubmit}>
            
@@ -183,7 +195,6 @@ function SignUp(){
                         <p>Click to select profile</p>
                   )}
             </div>
-
             <input 
                   type="file"
                   ref={fileInputRef}
@@ -191,34 +202,50 @@ function SignUp(){
                   accept="image/*"
                   onChange={handleFileChange}
             />
+           
+            {/* FIRSTNAME */}
+             <div className="input-wrapper">
+               <input
+                    name="firstname"
+                    type="text"
+                    value={firstName}
+                    placeholder="Enter Your First Name"
+                    onChange={(event) => setFirstName(event.target.value) }
+                    required
+                  />
+            </div>
 
-            <input
-                  name="firstname"
-                  type="text"
-                  value={firstName}
-                  placeholder="Enter Your First Name"
-                  onChange={(event) => setFirstName(event.target.value) }
+            {/* LASTNAME */}
+            <div className="input-wrapper">
+                <input
+                    name="lastname"
+                    type="text"
+                    value={lastName}
+                    placeholder="Enter your Last Name"
+                    onChange={(event) => setLastName(event.target.value) }
                   required
-            />
+                 />
+            </div>
 
-             <input
-                  name="lastname"
-                  type="text"
-                  value={lastName}
-                  placeholder="Enter your Last Name"
-                  onChange={(event) => setLastName(event.target.value) }
-                  required
-            />
-
-            <input
+             
+            {/* USERNAME */}
+            <div className="input-wrapper">
+                <input
                   name="username"
                   type="text"
                   value={username}
                   placeholder="Enter your username"
                   onChange={(event) => setUserName(event.target.value) }
                   required
-            />
-            <button onClick={handleUsernameSuggesstions}>Suggest Username</button>
+                 />    
+
+                 <button onClick={handleUsernameSuggesstions}
+                    className="form_button"
+            
+                    >Suggest Username
+                  </button>
+            </div>
+           
             <div>
                   {suggestions.length >0 && (
                         <ul>
@@ -228,55 +255,79 @@ function SignUp(){
                         </ul>
                   )}
             </div>
+      
 
-            <input
-                  name="email"
-                  type="email"
-                  value={email}
-                  placeholder="Enter your email"
-                  onChange={(event) => setEmail(event.target.value) }
-                  required
+            {/* EMAIL */}
+            <div className="input-wrapper">
+                <input
+                    name="email"
+                    type="email"
+                    value={email}
+                    placeholder="Enter your email"
+                    onChange={(event) => setEmail(event.target.value) }
+                    required
             />
-
-            <input
-                  name="password"
-                  type= {visible ? "text": "password"}
-                  value={password}
-                  placeholder="Enter Your Password"
-                  onChange={(event) => setPassword(event.target.value) }
-                  required
-            />
-            <div onClick={() => setVisible(!visible)}>
-                          { visible ?  <FaRegEye /> : <FaRegEyeSlash/> }
             </div>
+           
 
-            <input
+            {/* PASSWORD */}
+            <div className="input-wrapper">
+               <input
+                    name="password"
+                    type= {visible ? "text": "password"}
+                    value={password}
+                    placeholder="Enter Your Password"
+                    onChange={(event) => setPassword(event.target.value) }
+                    required
+               />
+
+               <span  className="icon" onClick={() => setVisible(!visible)}>
+                          { visible ?  <FaRegEye /> : <FaRegEyeSlash/> }
+               </span>
+            </div>
+            
+
+
+           {/* CONFIRM PASSWORD */}
+           <div className="input-wrapper">
+               <input
                   name="confirm_password"
                   type= {visibleConfirm ? "text": "password"}
                   value={confirmPassword}
                   placeholder="Confirm Your Password"
                   onChange={(event) => setConfirmPassword(event.target.value) }
                   required
-            />
-            <div onClick={() => setVisibleConfirm(!visibleConfirm)}>
+               />
+
+               <span className="icon" onClick={() => setVisibleConfirm(!visibleConfirm)}>
                           { visibleConfirm ?  <FaRegEye /> : <FaRegEyeSlash/> }
+               </span>
+           </div>
+          
+
+
+            {/* ADMIN CODE */}
+            <div className="input-wrapper">
+               <input 
+                   name="admin_code"
+                   type="password"
+                   value={adminCode}
+                   placeholder="Enter Admin Code"
+                   onChange={(event) => setAdminCode(event.target.value)}
+                />
             </div>
+           
 
-            <input 
-                  name="admin_code"
-                  type="password"
-                  value={adminCode}
-                  placeholder="Enter Admin Code"
-                  onChange={(event) => setAdminCode(event.target.value)}
-            />
-
-            <select value={role} onChange={(event) => setRole(event.target.value) }>
-                 <option>--Please Choose A Role--</option>
-                 <option value="Admin">Admin</option> 
-                 <option value="Other Employee">Other Employee</option>
-            </select>
-
-            <button type="submit">ADD USER</button>
+            {/*ROLE */}
+            <div className="select-wrapper">
+                <select value={role} onChange={(event) => setRole(event.target.value) }>
+                    <option>--Please Choose A Role--</option>
+                    <option value="Admin">Admin</option> 
+                    <option value="Other Employee">Other Employee</option>
+                </select>
+            </div>
+            <button type="submit" className="form_button"> ADD USER</button>
+      
           </form>
 
           {message && <p className="message">{message}</p>}

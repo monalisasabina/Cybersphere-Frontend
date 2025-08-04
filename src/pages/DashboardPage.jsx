@@ -77,6 +77,7 @@ function Dashboard(){
 
         <div>
           <button 
+                className="logout"
                 onClick={handleLogout}
                 >Logout
           </button>
