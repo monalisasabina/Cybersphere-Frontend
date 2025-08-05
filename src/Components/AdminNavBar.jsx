@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
+import "./AdminNavBar.css"
 
 function AdminNavBar(){
 
@@ -35,15 +36,17 @@ function AdminNavBar(){
      }
 
     return(
-        <div>
-            <nav>
+        
+          <div>
+            <nav className="admin-navbar" >
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/dashboard/signup">Sign Up</Link>
                 <Link to="/dashboard/users">Users</Link>
+                <Link to="/">Home</Link>
                 <button onClick={handleLogout}>Log Out</button>
-            </nav>
+             </nav>
+          </div>
 
-        </div>
     );
 }
 

@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useNavigate } from 'react-router-dom'
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import NavBar from './Components/NavBar'
 import './App.css'
@@ -7,7 +7,9 @@ import AdminNavBar from './Components/AdminNavBar';
 function App() {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // Accessing the LogIn page
   useEffect(() => {
   const handleKeyCombo = (e) => {
     console.log(e.key, e.ctrlKey, e.altKey);
@@ -20,20 +22,11 @@ function App() {
   return () => window.removeEventListener("keydown", handleKeyCombo);
   }, [navigate]);
 
-  const token = localStorage.getItem("access-token");
-  // const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const isAdmin = token
-
-
-
   return (
-    <>
+    <div>
       <NavBar/>
- 
-      {isAdmin && <AdminNavBar />}
-
       <Outlet/>
-    </>
+    </div>
   )
 }
 

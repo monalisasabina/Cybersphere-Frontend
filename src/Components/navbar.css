@@ -1,0 +1,31 @@
+/* NavBar.css */
+
+.navbar-container {
+  background-color: white;
+  padding: 16px 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-start; /* aligns items to the left */
+  align-items: center;
+  gap: 24px; /* spacing between NavLinks */
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: teal;
+}
+
+.navbar a.active {
+  color: teal;
+  border-bottom: 2px solid teal;
+}

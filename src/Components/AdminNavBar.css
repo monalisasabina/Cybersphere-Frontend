@@ -1,0 +1,61 @@
+/* AdminApp layout container */
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh
+}
+
+/* Top NavBar (public) */
+.admin-navbar nav {
+  color: white;
+  padding: 1rem;
+}
+
+/* Flex container for sidebar + content */
+.admin-body {
+  display: flex;
+  flex: 1;
+  height: 100px;
+}
+
+/* Sidebar (AdminNavBar) */
+.admin-navbar {
+  width: 200px;
+  height: 100%;
+  background-color: #1abc9c;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Main content area */
+.admin-main {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
+
+/* Styling links inside AdminNavBar */
+.admin-navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+
+}
+
+/* Style buttons too */
+.admin-navbar button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.admin-navbar button:hover {
+  background-color: #c0392b;
+}

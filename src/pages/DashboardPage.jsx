@@ -76,11 +76,11 @@ function Dashboard(){
         </div>
 
         <div>
-          <button 
+          {/* <button 
                 className="logout"
                 onClick={handleLogout}
                 >Logout
-          </button>
+          </button> */}
 
         </div>
     </div>
