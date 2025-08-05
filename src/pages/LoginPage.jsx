@@ -40,7 +40,7 @@ function LogIn(){
 
   return (
        <div>
-         <form onSubmit={handleLogin}>
+         <form onSubmit={handleLogin} className="login-form">
             <h2>Login</h2>
             
           {/* USERNAME/EMAIL */}

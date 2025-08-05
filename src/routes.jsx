@@ -11,6 +11,7 @@ import ResetPassword from "./Components/ResetPassword";
 import RequireAdmin from "./Components/RequireAdmin";
 import AdminApp from "./Components/AdminApp";
 import DisplayUsers from "./pages/Users";
+import UpdateUser from "./pages/UpdateUser";
 
 const routes = [
     {
@@ -60,6 +61,10 @@ const routes = [
             {
                 path: "users",
                 element: <DisplayUsers/>
+            },
+            {
+                path: "update_user",
+                element: <UpdateUser/>
             }
 
         ],

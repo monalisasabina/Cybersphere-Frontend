@@ -1,7 +1,12 @@
+.login-form{
+  margin-top: 20px;
+}
+
 
 .login-input-wrapper {
   position: relative;
   margin-bottom: 1.5rem;
+
 }
 
 .login-input-wrapper input {

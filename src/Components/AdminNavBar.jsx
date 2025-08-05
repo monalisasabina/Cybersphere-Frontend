@@ -42,7 +42,7 @@ function AdminNavBar(){
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/dashboard/signup">Sign Up</Link>
                 <Link to="/dashboard/users">Users</Link>
-                <Link to="/">Home</Link>
+                <Link to="/dashboard/update_user">Change Credentials</Link>
                 <button onClick={handleLogout}>Log Out</button>
              </nav>
           </div>
