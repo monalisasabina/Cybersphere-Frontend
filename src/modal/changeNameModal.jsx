@@ -12,7 +12,7 @@ function NameChangeModal({onClose, currentUser}){
     // Avoiding one of the name fields going blank
         useEffect(() => {
              console.log("Modal opened with user:", currentUser);
-            setFirstNameChange(currentUser.firstname || "");
+            // setFirstNameChange(currentUser.firstname || "");
             setLastNameChange(currentUser.lastname || "");
         },[currentUser])
 
@@ -32,7 +32,7 @@ function NameChangeModal({onClose, currentUser}){
         if (firstNameChange !== currentUser.firstname && firstNameChange.trim() !== ""){
             updatedFields.firstname = firstNameChange;
         }
-        if (lastNameChange !== currentUser.lastname  && lastNameChange.trim() !== ""){
+        if (lastNameChange !== currentUser.lastname && lastNameChange.trim() !== ""){
             updatedFields.lastname = lastNameChange;
         }
 
@@ -55,12 +55,13 @@ function NameChangeModal({onClose, currentUser}){
             });
 
             const data = await response.json();
+            console.log("Update response:", data);
           
             if (response.ok) {
               alert("Name updated successfully")
               onClose();
             } else {
-                alert("Failed to update")
+                alert(data?.error || "Failed to update")
             }
 
         } catch (err){
@@ -84,23 +85,19 @@ function NameChangeModal({onClose, currentUser}){
                         placeholder="First Name"
                         type="text"
                         value={firstNameChange}
-                        onChange={(event) => setFirstNameChange(event.target.value)}
-                        autoComplete="off"
+                        // defaultValue={currentUser.firstname || "" }
+                        onChange={(event) => setFirstNameChange(event.target.value)}  
                    />
-
                 </div>
 
-                  <div className="input-wrapper">
-
+                <div className="input-wrapper">
                    <input 
                         name="lastname_change"
                         placeholder="Last Name"
                         type="text"
                         value={lastNameChange}
                         onChange={(event) =>setLastNameChange(event.target.value)}
-                        autoComplete="off"
                    />
-
                 </div>
                 
                 <button type="submit">Save</button>
@@ -108,10 +105,6 @@ function NameChangeModal({onClose, currentUser}){
 
                </form>
             </div>
-
-            
-
-           
 
         </div>
     )

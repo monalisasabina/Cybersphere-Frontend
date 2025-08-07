@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import loadingGif from "../Pictures/ef8bbd4554dedcc2fd1fd15ab0ebd7a1.gif"
 import { MdArrowForwardIos } from "react-icons/md";
 import NameChangeModal from "../modal/changeNameModal";
+import EmailChangeModal from "../modal/changeEmailModal";
+import "./UpdateUser.css";
 
 
 function UpdateUser(){
@@ -52,15 +54,27 @@ function UpdateUser(){
                         <span> <MdArrowForwardIos /> </span>
                     </div>
 
+                    <div className="update-row" onClick={() => openModal('email')}>
+                        <span>Email</span>
+                        <span> <MdArrowForwardIos /> </span>
+                    </div>
+
                     {/* Conditions for modal */}
                     {modalOpen === "name" && 
                                <NameChangeModal 
+                                         key={currentUser.id}
                                          onClose={closeModal} 
                                          currentUser={currentUser}
                                         
                     />}
+                    {modalOpen === "email" && 
+                               <EmailChangeModal
+                                         key={currentUser.id}
+                                         onClose={closeModal} 
+                                         currentUser={currentUser}
+                                         
+                    />}
 
-                
                 </div>
 
             ) : (
