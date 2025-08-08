@@ -12,6 +12,9 @@ import RequireAdmin from "./Components/RequireAdmin";
 import AdminApp from "./Components/AdminApp";
 import DisplayUsers from "./pages/Users";
 import UpdateUser from "./pages/UpdateUser";
+import Projects from "./pages/Projects";
+import BlogPost from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
 
 const routes = [
     {
@@ -38,6 +41,18 @@ const routes = [
         {
             path: "/resetpassword",
             element: <ResetPassword />
+        },
+        {
+            path: "/projects",
+            element: <Projects />
+        },
+        {
+            path: "/blogs",
+            element: <BlogPost />
+        },
+        {
+            path: "/contact_us",
+            element: <ContactUs />
         }
       ]
     },

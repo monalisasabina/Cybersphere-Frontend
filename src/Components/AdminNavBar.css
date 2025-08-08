@@ -23,7 +23,7 @@
 .admin-navbar {
   width: 200px;
   height: 100%;
-  background-color: #1abc9c;
+  background-color: #009688;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
@@ -56,6 +56,7 @@
   border: none;
   padding: 0.5rem;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .admin-navbar button:hover {

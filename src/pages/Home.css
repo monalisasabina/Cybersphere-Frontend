@@ -8,6 +8,7 @@
   padding: 2rem;
   text-align: left;
   gap: 3rem ;
+  margin-top: 90px;
 }
 
 .hero-text {
@@ -64,4 +65,20 @@
   box-shadow: 0 8px 32px rgba(0, 150, 136, 0.15); /* Teal shadow */
   margin-top: 5px;
 
+}
+
+/* Animation on picture */
+.hero-image {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

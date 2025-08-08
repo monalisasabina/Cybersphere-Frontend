@@ -71,7 +71,7 @@ function Dashboard(){
     <div>
         <div>
              <h2>Dashboard</h2>
-             {user ? <img src={user.profile_pic}/>: <p> </p>}
+             {user ? <img src={user.profile_pic}/>: <p> mambo! </p>}
              {user ? <p>Welcome, {user.firstname}</p> : <p>Loading user...</p>}
 
         </div>

@@ -1,7 +1,9 @@
+import "./About.css"
+
 function About(){
 
     return(
-        <div>
+        <div className="about-cont">
             <h1> ABOUT PAGE</h1>
         </div>
     )

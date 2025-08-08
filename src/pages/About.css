@@ -1,0 +1,9 @@
+.about-cont {
+  display: flex;
+  flex-direction: row;
+  min-height: 80vh;
+  background: linear-gradient(120deg, #e0f7fa 0%, #b2ebf2 100%);
+  padding: 2rem;
+  text-align: left;
+  margin-top: 90px;
+}
