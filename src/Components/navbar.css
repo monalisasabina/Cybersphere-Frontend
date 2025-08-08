@@ -1,25 +1,40 @@
 /* NavBar.css */
 
 .navbar-container {
-  background-color: white;
   padding: 16px 32px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent */
+  backdrop-filter: blur(10px); 
 }
 
 .navbar {
   display: flex;
-  justify-content: flex-start; /* aligns items to the left */
+  justify-content: space-between; /* aligns items to the left */
   align-items: center;
   gap: 24px; /* spacing between NavLinks */
+}
+
+.navbar-links {
+  display: flex;
+  gap: 24px;
 }
 
 .navbar a {
   text-decoration: none;
   color: #333;
-  font-weight: 600;
+  font-weight: 800;
   padding: 8px 12px;
   transition: color 0.3s ease;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
 }
+
 
 .navbar a:hover {
   color: teal;
@@ -27,5 +42,44 @@
 
 .navbar a.active {
   color: teal;
-  border-bottom: 2px solid teal;
+  /* border-bottom: 2px solid teal; */
+}
+
+.navbar-logo img {
+  height: 70px;   /* Adjust as needed */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* Mobile View */
+@media (max-width: 600px) {
+  .navbar-container {
+    padding: 8px 12px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .navbar-logo img {
+    height: 40px;
+    margin-bottom: 8px;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .navbar a {
+    font-size: 16px;
+    padding: 6px 0;
+    width: 100%;
+    text-align: left;
+  }
 }

@@ -2,7 +2,8 @@
 .admin-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh
+  height: 100vh;
+  padding-top: 95px; /* Adjust to your navbar height */
 }
 
 /* Top NavBar (public) */

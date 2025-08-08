@@ -20,7 +20,6 @@ function UpdateUser(){
     };
 
    
-
     // Check Session, to update current user ONLY
     useEffect(() => {
         const token = localStorage.getItem("access-token")
@@ -39,7 +38,6 @@ function UpdateUser(){
     }, []);
 
   
-
     return(
         <div>
             <h2>Profile</h2>

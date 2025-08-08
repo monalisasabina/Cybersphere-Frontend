@@ -1,0 +1,66 @@
+.hero-cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background: linear-gradient(120deg, #e0f7fa 0%, #b2ebf2 100%);
+  padding: 2rem;
+  text-align: left;
+  gap: 3rem ;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #006d77; /* Deep teal */
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  font-family: "Nunito", sans-serif;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #009688; /* Teal */
+  margin-bottom: 2rem;
+  max-width: 600px;
+  font-family: "Nunito", sans-serif;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem; /* Adjust spacing as needed */
+
+}
+
+.hero-cta {
+  background: #009688; /* Teal */
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 2rem;
+  font-family: "Nunito", sans-serif;
+}
+
+.hero-cta:hover {
+  background: #006d77; /* Deep teal on hover */
+}
+
+.hero-image img {
+  max-width: 450px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 150, 136, 0.15); /* Teal shadow */
+  margin-top: 0;
+}
