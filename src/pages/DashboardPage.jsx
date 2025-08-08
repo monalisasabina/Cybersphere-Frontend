@@ -5,6 +5,8 @@ function Dashboard(){
 
       const [user, setUser] = useState(null);
 
+      const navigate = useNavigate();
+
   //_____________________________________________________________________________________________________________
   //Getting the User details from the Backend 
   useEffect(() => {
@@ -24,14 +26,13 @@ function Dashboard(){
           setUser(data.user);
         } else {
           alert("Session expired or unauthorized");
+          navigate('/login')
         }
       });
   }, []);
 
   // _____________________________________________________________________________________________________________________
   // Navigating back to the homepage using the logout button
-     
-     const navigate = useNavigate();
 
     //  Handle LogOut
      async function handleLogout(){

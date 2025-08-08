@@ -20,7 +20,10 @@ function NavBar(){
 
                      {/* For admin ONLY */}
                     {token && (
-                      <NavLink to="/dashboard">Dashboard</NavLink>
+                      <>
+                        {/* <NavLink to="/login">Login</NavLink> */}
+                        <NavLink to="/dashboard">Dashboard</NavLink>
+                      </>
                     )} 
                 </div>
 

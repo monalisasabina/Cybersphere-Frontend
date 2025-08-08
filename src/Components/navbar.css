@@ -1,9 +1,8 @@
-/* NavBar.css */
 
 .navbar-container {
-  padding: 16px 32px;
+  padding: 0px 29px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 70px;
+  height: auto;
   position: fixed;
   top: 0;
   left: 0;
@@ -46,7 +45,7 @@
 }
 
 .navbar-logo img {
-  height: 70px;   /* Adjust as needed */
+  height: 90px;   /* Adjust as needed */
   width: auto;
   object-fit: contain;
   display: block;
