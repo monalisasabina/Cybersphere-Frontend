@@ -1,6 +1,8 @@
+import "./Contact.css";
+
 const ContactUs = () => {
     return (
-        <div>
+        <div  className="contact-cont">
             <h2>Contact Us</h2>
             <p>Contact form will go here.</p>
         </div>
