@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Projects.css";
 
 const Projects = () => {
@@ -27,11 +28,14 @@ const Projects = () => {
             <h2>Projects</h2>
 
             <div className="projects-list">
-                 {projects.map((map) =>(
-                 <div className="project-card" key={map.id}>
-                    <h3>{map.title}</h3>
-                    <img src={map.images} alt={map.title} />
-                    <p>{map.description}</p>
+                 {projects.map((project) =>(
+                 <div className="project-card" key={project.id}>
+                    <img src={project.images[0]} alt={project.title} />
+                    <h3>{project.title}</h3>
+                    <p>{project.subtitle}</p>
+                    <Link to={`/projects/${project.id}`}>
+                        <button className="project-button">Description</button>
+                    </Link>
                 </div>
             ))}
 

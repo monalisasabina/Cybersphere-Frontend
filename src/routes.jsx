@@ -15,6 +15,7 @@ import UpdateUser from "./pages/UpdateUser";
 import Projects from "./pages/Projects";
 import BlogPost from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
+import ProjectDescription from "./pages/Description";
 
 const routes = [
     {
@@ -53,6 +54,10 @@ const routes = [
         {
             path: "/contact_us",
             element: <ContactUs />
+        },
+        {
+            path: "/projects/:id",
+            element: <ProjectDescription/>
         }
       ]
     },
