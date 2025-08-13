@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./Projects.css"
 
 
 const ProjectDescription = () => {
@@ -23,7 +24,7 @@ const ProjectDescription = () => {
     }
 
     return (
-        <div>
+        <div className="project-cont">
             <div className="project-images">
                 {project.images.map((image, index) => (
                     <img 
@@ -35,7 +36,9 @@ const ProjectDescription = () => {
             
             <h2>{project.title}</h2>
             <p>{project.description}</p>
-            <button onClick={() => window.history.back()}>Go back to Projects</button>
+            <button onClick={() => window.history.back()} className="project-button"
+                >Go back to Projects
+            </button>
 
         </div>
     );

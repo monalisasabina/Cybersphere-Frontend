@@ -39,7 +39,7 @@ function UpdateUser(){
 
   
     return(
-        <div>
+        <div className="dashboard-cont">
             <h2>Profile</h2>
 
             {currentUser ? (

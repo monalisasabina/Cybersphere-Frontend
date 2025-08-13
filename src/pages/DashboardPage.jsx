@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Dashboard.css"
 
 function Dashboard(){
 
@@ -68,7 +69,7 @@ function Dashboard(){
 
 
   return (
-    <div>
+    <div className="dashboard-cont">
         <div>
              <h2>Dashboard</h2>
              {user ? <img src={user.profile_pic}/>: <p> mambo! </p>}

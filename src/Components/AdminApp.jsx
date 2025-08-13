@@ -7,21 +7,20 @@ function AdminApp(){
 
     return(
         <div className="admin-layout">
-            
+
             {/* Public NavBar */}
             <header> <NavBar /></header>
-
-            <div className="admin-body">
-                {/* Admin Navbar */}
             
-                  <AdminNavBar/>
-              
-                  {/*Main Content */}
-                <main className="admin-main">
-                     <Outlet/>
-                </main>
-            </div>
+            <div className="admin-body">
+                
+                {/* Admin Navbar */}
+                 <AdminNavBar/>
 
+                {/*Main Content*/}
+                 <Outlet/>
+              
+                
+            </div>
         </div>
     )
 }

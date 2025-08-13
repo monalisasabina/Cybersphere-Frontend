@@ -177,7 +177,7 @@ function SignUp(){
 
 
   return (
-    <div>
+    <div className="dashboard-cont">
 
       <h2>Sign Up Page</h2>
 

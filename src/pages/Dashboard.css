@@ -1,0 +1,7 @@
+.dashboard-cont {
+  height: 100%;
+  /* background: linear-gradient(135deg, #fff 0%, #e0f7fa 20%, #b2ebf2 60%, #fff 100%); */
+  padding: 2rem;
+  /* margin-top: 90px; */
+  flex: 1;
+}

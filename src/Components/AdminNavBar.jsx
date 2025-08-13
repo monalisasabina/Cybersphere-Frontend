@@ -36,17 +36,13 @@ function AdminNavBar(){
      }
 
     return(
-        
-          <div>
-            <nav className="admin-navbar" >
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/dashboard/signup">Sign Up</Link>
-                <Link to="/dashboard/users">Users</Link>
-                <Link to="/dashboard/update_user">Account</Link>
-                <button onClick={handleLogout}>Log Out</button>
-             </nav>
-          </div>
-
+        <nav className="admin-navbar" >
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard/signup">Sign Up</Link>
+            <Link to="/dashboard/users">Users</Link>
+            <Link to="/dashboard/update_user">Account</Link>
+            <button onClick={handleLogout}>Log Out</button>
+        </nav>
     );
 }
 
