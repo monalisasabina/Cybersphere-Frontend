@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import "./Dashboard.css"
 
 function Dashboard(){
 
       const [user, setUser] = useState(null);
+      const [value, setValue] = useState(new Date());
 
       const navigate = useNavigate();
 
@@ -75,6 +78,13 @@ function Dashboard(){
              {user ? <img src={user.profile_pic}/>: <p> mambo! </p>}
              {user ? <p>Welcome, {user.firstname}</p> : <p>Loading user...</p>}
 
+        </div>
+
+        <div className="dashboard-calendar">
+           <Calendar
+                onChange={setValue}
+                value={value}
+             />
         </div>
 
         <div>
