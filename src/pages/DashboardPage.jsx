@@ -35,6 +35,23 @@ function Dashboard(){
       });
   }, []);
 
+  //_____________________________________________________________________________________________________________
+  // DASHBOARD API
+  // Proves that the user is authenticated and retrieves dashboard data
+  useEffect(() => {
+    const token = localStorage.getItem("access-token");
+
+       fetch("http://127.0.0.1:5555/dashboard", {
+         headers: {
+           Authorization: `Bearer ${token}`,
+         },
+       })
+         .then((res) => res.json())
+         .then((data) => {
+           console.log("Dashboard API data:", data);
+         });
+     }, []);
+
   // _____________________________________________________________________________________________________________________
   // Navigating back to the homepage using the logout button
 
@@ -74,7 +91,8 @@ function Dashboard(){
   return (
     <div className="dashboard-cont">
         <div>
-             <h2>Dashboard</h2>
+             <h2>Dashboard</h2>.
+             
              {user ? <img src={user.profile_pic}/>: <p> mambo! </p>}
              {user ? <p>Welcome, {user.firstname}</p> : <p>Loading user...</p>}
 

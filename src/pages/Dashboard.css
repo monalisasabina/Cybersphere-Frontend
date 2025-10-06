@@ -5,3 +5,27 @@
   /* margin-top: 90px; */
   flex: 1;
 }
+
+/* CALENDAR */
+/* Dashboard.css */
+.react-calendar {
+  background: white;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.react-calendar__tile {
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.react-calendar__tile--active {
+  background: #00bfa5;
+  color: white;
+}
+
+.react-calendar__tile:hover {
+  background: #e0f7fa;
+}

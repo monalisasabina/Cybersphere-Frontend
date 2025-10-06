@@ -1,6 +1,7 @@
 import "./Home.css";
 import heroImage from "../Pictures/ChatGPT Image Aug 8, 2025, 01_24_41 PM.png"
 import { useNavigate } from "react-router-dom";
+
 // Also known as the Hero Section 😁
 function Home(){
 
